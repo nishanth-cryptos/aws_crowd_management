@@ -1,7 +1,7 @@
 #!/bin/bash
 # EC2 "User data" script (Amazon Linux 2023). Paste into Advanced details -> User data.
-# Change REPO_URL to your GitHub repository before launching.
-REPO_URL="https://github.com/YOUR-USERNAME/YOUR-REPO.git"
+# REPO_URL is the GitHub repository EC2 clones on first boot.
+REPO_URL="https://github.com/nishanth-cryptos/aws_crowd_management.git"
 
 set -eux
 exec > /var/log/crowd-deploy.log 2>&1
