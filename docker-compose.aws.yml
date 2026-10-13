@@ -1,0 +1,24 @@
+# AWS EC2 deployment (see DEPLOY_AWS.md):
+#   docker build -t crowd-app:latest . && docker compose -f docker-compose.aws.yml up -d
+services:
+  mongodb:
+    image: mongo:6.0
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+
+  app:
+    build: .
+    image: crowd-app:latest
+    restart: always
+    ports:
+      - "80:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/crowd_management
+      - PORT=5000
+      - NODE_ENV=production
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
