@@ -15,7 +15,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+    // Comma-separated allow-list; unset allows any origin (e.g. the GitHub Pages frontend)
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : true,
     methods: ["GET", "POST"]
   }
 });
